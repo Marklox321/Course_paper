@@ -1,5 +1,5 @@
 # Разработка базы данных для системы самообслуживания в ресторане быстрого питания
-![Скриншот](https://github.com/n0maCi/course_project/blob/main/erd.png?raw=true)
+![Скриншот]([https://github.com/n0maCi/course_project/blob/main/erd.png?raw=true](https://github.com/Marklox321/Course_paper/blob/main/ERD_DIAGRAMA%20(2).png?raw=true))
 ## Типовые запросы
 
 ## Типовые Запросы
