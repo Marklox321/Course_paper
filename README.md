@@ -61,35 +61,30 @@ SELECT * FROM fastfood_db.current_month_revenue;
 Это представление показывает доход за текущий месяц.
 
 ## Роли
-1. Создаём роли
+
 ``` sql
+ -- 1. Создаём роли
 CREATE ROLE IF NOT EXISTS 'full_access_role';
 CREATE ROLE IF NOT EXISTS 'read_only_role';
-```
-2. Назначаем права
-``` sql
+ -- 2. Назначаем права
 GRANT ALL PRIVILEGES ON *.* TO 'full_access_role' WITH GRANT OPTION;
 GRANT SELECT ON *.* TO 'read_only_role';
-```
-3. Создаём пользователей
-``` sql
-CREATE USER IF NOT EXISTS 'Mark'@'localhost' IDENTIFIED BY '0987654321';
+ -- 3. Создаём пользователей
+CREATE USER IF NOT EXISTS 'Mark'@'localhost' IDENTIFIED BY'0987654321';
 CREATE USER IF NOT EXISTS 'Bogdan'@'localhost' IDENTIFIED BY '1234567890';
 CREATE USER IF NOT EXISTS 'Билли'@'localhost' IDENTIFIED BY '12345';
-```
-4. Назначаем роли
-``` sql
+ -- 4. Назначаем роли
 GRANT 'full_access_role' TO 'Mark'@'localhost';
 GRANT 'read_only_role' TO 'Bogdan'@'localhost';
 GRANT 'read_only_role' TO 'Билли'@'localhost';
-```
-5. Активируем роли по умолчанию (важно!)
-``` sql
+ -- 5. Активируем роли по умолчанию (важно!)
 SET DEFAULT ROLE 'full_access_role' TO 'Mark'@'localhost';
 SET DEFAULT ROLE 'read_only_role' TO 'Bogdan'@'localhost';
 SET DEFAULT ROLE 'read_only_role' TO 'Билли'@'localhost';
-```
-6. Применяем изменения
-``` sql
+ -- 6. Применяем изменения
 FLUSH PRIVILEGES;
 ```
+**"Данный код настраивает роли доступа для сотрудников:
+1)Марк получает права администратора (полный доступ)
+2)Богдан и Билли получают права только на чтение
+Это обеспечивает защиту базы данных от несанкционированных изменений."**
