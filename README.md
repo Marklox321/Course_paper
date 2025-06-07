@@ -61,11 +61,35 @@ SELECT * FROM fastfood_db.current_month_revenue;
 Это представление показывает доход за текущий месяц.
 
 ## Роли
-1. Роль для руководителей отделов
+1. Создаём роли
 ``` sql
-CREATE ROLE IF NOT EXISTS LeaderUser;
-GRANT SELECT ON course_work.employees TO LeaderUser;
-GRANT SELECT ON course_work.job_title TO LeaderUser;
-GRANT SELECT ON course_work.depatments TO LeaderUser;
-GRANT SELECT, INSERT ON course_work.time_tracking TO LeaderUser;
+CREATE ROLE IF NOT EXISTS 'full_access_role';
+CREATE ROLE IF NOT EXISTS 'read_only_role';
+```
+2. Назначаем права
+``` sql
+GRANT ALL PRIVILEGES ON *.* TO 'full_access_role' WITH GRANT OPTION;
+GRANT SELECT ON *.* TO 'read_only_role';
+```
+3. Создаём пользователей
+``` sql
+CREATE USER IF NOT EXISTS 'Mark'@'localhost' IDENTIFIED BY '0987654321';
+CREATE USER IF NOT EXISTS 'Bogdan'@'localhost' IDENTIFIED BY '1234567890';
+CREATE USER IF NOT EXISTS 'Билли'@'localhost' IDENTIFIED BY '12345';
+```
+4. Назначаем роли
+``` sql
+GRANT 'full_access_role' TO 'Mark'@'localhost';
+GRANT 'read_only_role' TO 'Bogdan'@'localhost';
+GRANT 'read_only_role' TO 'Билли'@'localhost';
+```
+5. Активируем роли по умолчанию (важно!)
+``` sql
+SET DEFAULT ROLE 'full_access_role' TO 'Mark'@'localhost';
+SET DEFAULT ROLE 'read_only_role' TO 'Bogdan'@'localhost';
+SET DEFAULT ROLE 'read_only_role' TO 'Билли'@'localhost';
+```
+6. Применяем изменения
+``` sql
+FLUSH PRIVILEGES;
 ```
