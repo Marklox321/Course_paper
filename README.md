@@ -1,5 +1,5 @@
 # Проектирование базы данных для кассовой системы ресторана быстрого питания
-![Скриншот](https://github.com/Marklox321/Course_paper/blob/main/Erd.png?raw=true)
+![Скриншот](https://github.com/Marklox321/Course_paper/blob/main/ERD_TOP.png?raw=true)
 
 
 ## Типовые Запросы
