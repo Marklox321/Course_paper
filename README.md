@@ -3,7 +3,7 @@
 
 
 ## Типовые Запросы
-**1. Вывести сотрдника, который получает больше всех в компании**
+**1. Вывести сотрудника, который получает больше всех в компании**
 ```sql
 select name, salary from emploees
 order by salary desc
@@ -38,6 +38,18 @@ limit 1;
 select products_id, amount from change_logs
 where old_value = 'Заказ в процессе'
 order by amount desc;
+```
+**6. Этот запрос позволяет, как система выводит товары с сроком от 7 дней до просрочки**
+```sql
+SELECT 
+    *
+FROM 
+    expirations e
+WHERE 
+    dey_deleys BETWEEN 0 AND 7
+    AND e.quantity > 0
+ORDER BY 
+    e.dey_deleys ASC;
 ```
 
 ## Хранимые процедуры
